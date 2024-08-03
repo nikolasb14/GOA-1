@@ -26,7 +26,8 @@ console.log(clone);
 let source = {a: 1, b: 2};
 let target2 = {c: 3, d: 4};
 Object.assign(target2, source);
-console.log(target2);
+console.log(target2);       
+
 
 // 6. Merge arrays of objects into a single object using Object.assign.
 let arr = [{a: 1}, {b: 2}, {c: 3}];
@@ -54,7 +55,7 @@ function manualAssign(target, ...sources) {
         for (let key in source) {
             if (source.hasOwnProperty(key)) {
                 target[key] = source[key];
-            }
+            }   
         }
     }
     return target;
@@ -67,7 +68,7 @@ console.log(manualAssign({}, {a: 1}, {b: 2}));
 function manualAssign2(target, ...sources) {
     for (let source of sources) {
         for (let key of Object.keys(source)) {
-            target[key] = source[key];
+            target[key] = sou   [key];
         }
     }
     return target;
