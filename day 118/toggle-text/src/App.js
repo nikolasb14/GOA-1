@@ -1,25 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+function ToggleText() {
+  const [text, setText] = useState('Hello');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>{text}</p>
+      <button onClick={() => setText(text === 'Hello' ? 'Goodbye' : 'Hello')}>Toggle Text</button>
     </div>
   );
 }
 
-export default App;
+export default ToggleText;

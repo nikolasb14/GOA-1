@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+function ImageCarousel() {
+  const images = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
+  const [index, setIndex] = useState(0);
+
+  const nextImage = () => setIndex((index + 1) % images.length);
+  const prevImage = () => setIndex((index - 1 + images.length) % images.length);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={prevImage}>Previous</button>
+      <img src={images[index]} alt="carousel" />
+      <button onClick={nextImage}>Next</button>
     </div>
   );
 }
 
-export default App;
+export default ImageCarousel;

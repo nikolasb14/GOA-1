@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+function TodoList() {
+  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState('');
+
+  const addTask = () => {
+    setTasks([...tasks, { text: task, completed: false }]);
+    setTask('');
+  };
+
+  const toggleTask = (index) => {
+    const newTasks = tasks.map((task, i) => {
+      if (i === index) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setTasks(newTasks);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input value={task} onChange={(e) => setTask(e.target.value)} />
+      <button onClick={addTask}>Add Task</button>
+      <ul>
+        {tasks.map((task, index) => (
+          <li key={index} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+            <input type="checkbox" checked={task.completed} onChange={() => toggleTask(index)} />
+            {task.text}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default App;
+export default TodoList;
